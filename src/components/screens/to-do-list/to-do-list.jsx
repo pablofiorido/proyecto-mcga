@@ -1,12 +1,21 @@
 import React from "react";
 import ToDo from "./to-do";
+import Button from "../../shared/button/button"
 
 class ToDoList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       list: [{ id: "dsadsadsa", description: "descrip xxxx" }],
+      value: "",
     };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    e.persist();
+    this.setState({ value: e.target.value });
   }
 
   renderList() {
@@ -19,8 +28,23 @@ class ToDoList extends React.Component {
     );
   }
 
+
+
+
+  
   render() {
-    return <div>{this.renderList()}</div>;
+    return (
+      <div>
+        <div>
+          <input value={this.state.value} onChange={this.handleChange} />
+          <Button type="add">Add</Button>
+        </div>
+        <div>
+
+        </div>
+        {this.renderList()}
+      </div>
+    );
   }
 }
 
