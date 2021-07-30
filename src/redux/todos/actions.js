@@ -40,6 +40,11 @@ import {
     type: FETCH_TODOS_REJECTED,
     error: err,
   });
+
+  export const editTodoFulfilled = (payload) => ({
+    type: EDIT_TODO_FULFILLED,
+    payload: payload,
+  });
   
   export const editTodoPending = () => ({
     type: EDIT_TODO_PENDING,
