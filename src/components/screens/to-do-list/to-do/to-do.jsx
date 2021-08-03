@@ -1,15 +1,17 @@
 import React from "react";
-import css from "./to-do.module.css";
+//import css from "./to-do.module.css";
+//import Button from "../../../shared/button";
 
 class ToDo extends React.Component {
 
-/*  render() {
+  render() {
     return (
         <li key={this.props.id}>{this.props.description}</li>
     )
 
-}*/
+}
 
+/*
 render() {
   const { isSelected, description, onClick, onEdit, onDelete } = this.props;
   return (
@@ -34,7 +36,9 @@ render() {
     </li>
   );
 }
+*/
 
 }
+
 
 export default ToDo

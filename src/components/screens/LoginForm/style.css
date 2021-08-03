@@ -1,12 +1,44 @@
-.formulariostyle{
 
-    background-color: blue;
+.main{
+margin-left: 550px;
+}
+
+.Container{
+    background-color: rgba(236, 236, 243, 0.897);
+    width: 400px;
+    padding: 10px;
+    border: 5px rgb(0, 0, 0) solid;
+    border-radius: 15px;
+}
+
+
+.FormStyle{
+
+    font-family: cursive;
+}
+
+
+.FormUser{
+
+    font-family: cursive;
+}
+
+
+.FormPass{
+
+    font-family: cursive;
+}
+
+.FormButton{
+
+    font-family: cursive;
 }
 
 .LoginButton{
-background-color: red;
+
+margin-top: 15px;
+margin-bottom: 20px;
+font-family: cursive;
+background-color: rgb(139, 139, 139);
 
 }
-
-
-
