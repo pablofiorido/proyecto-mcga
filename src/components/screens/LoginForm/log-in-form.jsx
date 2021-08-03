@@ -1,10 +1,18 @@
 
 import './style.css';
 import React from 'react';
-import Button from "../../shared/button/button"
-// import { TextField } from '../../shared/input/input';
+
+import { TextField } from '../../shared/input/input';
+
+import Button from "../../shared/button/button";
+
+
+
 
 class LoginForm extends React.Component {
+
+
+
 
     constructor(props) {
 
@@ -17,6 +25,8 @@ class LoginForm extends React.Component {
 
        this.handleChange = this.handleChange.bind(this);
 
+       
+
     }
 
     
@@ -24,7 +34,10 @@ class LoginForm extends React.Component {
         e.persist()
      this.setState({[e.target.name]: e.target.value})
     }
+
+
   
+
 
     render() {
 
@@ -34,26 +47,43 @@ class LoginForm extends React.Component {
 
                 <div className="Container">
 
-                    <div className="FormStyle">
-
-                        <div className="FormUser">
-                            <h2 className="FormData">USUARIO</h2>
-                            <input value={this.state.username} name="username" placeholder="usuario" onChange={this.handleChange} />
-                        </div>
-
-                        <div className="FormPass">
-                            <h2 className="FormData">CONTRASEÑA</h2>
-                            <input value={this.state.password} name="password" placeholder="******" onChange={this.handleChange} />
                     
-                        </div>
-                    </div>
+                <form onSubmit={console.log(this.state.username, this.state.password)}>
 
-                    <div className="FormButton">
+                <div className="FormStyle">
 
-                        <Button type="login">LOG IN</Button>
 
-                        <Button type="login">SIGN UP</Button>
-                    </div>
+            <div className="FormUser">
+               <h2 className="FormData">USUARIO</h2>
+              <TextField
+                  value={this.state.username}
+                  name="username"
+                   placeholder="usuarios"
+                   onChange={this.handleChange}
+               />
+
+  
+            </div>
+
+            <div className="FormPass">
+             <h2 className="FormData">CONTRASEÑA</h2>
+             <TextField
+                  value={this.state.password}
+                  name="password"
+                  placeholder="******"
+                  onChange={this.handleChange}
+             />
+
+            </div>
+            </div>
+
+            <div className="FormButton">
+
+            <Button type="submit">LOG IN</Button>
+            </div>
+
+        </form>
+
                 
                 </div>
             </div>
@@ -63,6 +93,7 @@ class LoginForm extends React.Component {
 }   
 
 export default LoginForm;
+
 
 
 /*
@@ -77,6 +108,11 @@ export default LoginForm;
 
                 <div className="FormPass">
                 <h2 className="FormData">Contraseña</h2>
+
+                <input value={this.state.password} name="password" placeholder="******" onChange={this.handleChange} />
+                    
+                            
+
                 <input value={this.state.password} name="password" onChange={this.handleChange} />
                 </div>
 
