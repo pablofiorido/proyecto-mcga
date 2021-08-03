@@ -2,7 +2,7 @@
 import './style.css';
 import React from 'react';
 import Button from "../../shared/button/button"
-
+// import { TextField } from '../../shared/input/input';
 
 class LoginForm extends React.Component {
 
@@ -44,11 +44,12 @@ class LoginForm extends React.Component {
                         <div className="FormPass">
                             <h2 className="FormData">CONTRASEÑA</h2>
                             <input value={this.state.password} name="password" placeholder="******" onChange={this.handleChange} />
+                    
                         </div>
-
                     </div>
 
                     <div className="FormButton">
+
                         <Button type="login">LOG IN</Button>
 
                         <Button type="login">SIGN UP</Button>
