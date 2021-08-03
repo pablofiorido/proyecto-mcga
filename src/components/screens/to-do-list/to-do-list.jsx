@@ -35,13 +35,27 @@ class ToDoList extends React.Component {
   render() {
     return (
       <div>
+
         <div>
           <input value={this.state.value} onChange={this.handleChange} />
           <Button type="add">Add</Button>
         </div>
-        <div>
 
+        <div>
+        <input value={this.state.value} onChange={this.handleChange} />
+          <Button type="edit">Edit</Button>
         </div>
+
+        <div>
+        <input value={this.state.value} onChange={this.handleChange} />
+          <Button type="delete">Delete</Button>
+        </div>
+
+        <div>
+        <input value={this.state.value} onChange={this.handleChange} />
+          <Button type="disabled">Disabled</Button>
+        </div>
+
         {this.renderList()}
       </div>
     );

@@ -3,28 +3,28 @@ import ToDoList from './components/screens/to-do-list';
 import LoginForm from './components/screens/LoginForm';
 
 import { BrowserRouter, Route, Redirect, Switch, Link } from 'react-router-dom'
+import Button from './components/shared/button/button';
 
 function App() {
-
-
-
 
   return (
     <div className="App">
 
+
+
+
 <BrowserRouter>
-<Switch>
-        <Route exact path="/login" component={<LoginForm />} />
-       <Route exact path="/todos" component={<ToDoList />} />
+        <div className="App">
+          <Redirect to="/login" />
 
+          <Button type="menu"><Link to="/todos">TO DO LIST</Link></Button>
+          <Button type="menu"><Link to="/login">SIGN UP</Link></Button>
 
-       <button><Link to="/todos">link a TO DO LIST</Link></button>
+          <Route exact path="/login"><LoginForm /></Route>
+          <Route exact path="/todos"><ToDoList /></Route>
 
-       </Switch>
-
-</BrowserRouter>
-
-<LoginForm/>
+        </div>
+      </BrowserRouter>
 
 
     </div>
@@ -32,3 +32,6 @@ function App() {
 }
 
 export default App;
+
+
+
