@@ -1,13 +1,116 @@
 
-import './style.css';
+// import './style.css';
 import React from 'react';
-
 import { TextField } from '../../shared/input/input';
-
 import Button from "../../shared/button/button";
+import css from "./login.module.css";
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router";
+import { mapError } from "../../../helpers/error-format";
+import { isValidEmail } from "../../../helpers/validations";
+import { LOGIN_FULFILLED } from "../../../redux/auth/constants";
+import { ErrorLabel } from "../../shared/label/errorLabel";
+import { loginFulfilled } from '../../../redux/auth/actions';
+import { login } from '../../../redux/auth/thunks';
+
+
+const Login = ({ login, isLoading, loginError }) => {
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+  const [emailFocused, setEmailFocused] = useState(false);
+  const [passwordFocused, setPasswordFocused] = useState(false);
+  const [error, setError] = useState("");
+  let history = useHistory();
+  const handleChange = (event) => {
+    event.persist();
+    const value = event.target.value;
+    if (event.target.name === "password") {
+      setUserPassword(value);
+    } else {
+      setUserEmail(value);
+    }
+  };
+
+  useEffect(() => {
+    if (userEmail && !isValidEmail(userEmail)) {
+      setError("InvalidEmail");
+    } else {
+      setError("");
+    }
+    if (!error && userEmail && userPassword) {
+      setError("");
+    }
+  }, [userEmail, userPassword, error]);
+
+  const handleBlur = (event) => {
+    event.persist();
+    if (event.target.name === "password") {
+      setPasswordFocused(true);
+    } else {
+      setEmailFocused(true);
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const response = await login({ username: userEmail, password: userPassword });
+    console.log(response);
+    if (response.type === LOGIN_FULFILLED) {
+      history.push("/tasks");
+    }
+  };
+
+  useEffect(() => {
+    if (wasInputFocused && (!!!userEmail || !!!userPassword)) {
+      setError("Incompleted");
+    }
+  }, [error, userEmail, userPassword, emailFocused, passwordFocused]);
+
+  const isButtonDisabled = !!!userEmail || !!!userPassword || error;
+  const wasInputFocused = emailFocused && passwordFocused;
+
+  return (
+    <div className={css.container}>
+      <form className={css.wrapper} onSubmit={handleSubmit}>
+        <h1>SIGN IN</h1>
+        <div className={css.inputsWrapper}>
+          <TextField
+            label="Email"
+            onChange={handleChange}
+            name="email"
+            onBlur={handleBlur}
+          />
+          <br />
+          <TextField
+            label="Password"
+            type="password"
+            onChange={handleChange}
+            name="password"
+            onBlur={handleBlur}
+          />
+          <br />
+          <ErrorLabel message={mapError[error] || loginError} />
+          <br />
+        </div>
+        <Button
+          type="submit"
+          size="height"
+          disabled={isButtonDisabled || isLoading}
+        >
+          {!isLoading ? "Login" : "Loading..."}
+        </Button>
+      </form>
+    </div>
+  );
+};
+
+export default Login;
 
 
 
+
+
+/*
 
 class LoginForm extends React.Component {
 
@@ -94,6 +197,7 @@ class LoginForm extends React.Component {
 
 export default LoginForm;
 
+*/
 
 
 /*

@@ -2,16 +2,39 @@ import './App.css';
 import ToDoList from './components/screens/to-do-list';
 import LoginForm from './components/screens/LoginForm';
 import Home from './components/screens/Home';
-
-import { BrowserRouter, Route, Redirect, Switch, Link } from 'react-router-dom'
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import Login from "./components/screens/LoginForm";
+import PrivateRoute from "./helpers/privateRoute";
 import Button from './components/shared/button/button';
+
+
+
+function App() {
+  return (
+    <Provider store={store}>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/login">
+            <LoginForm />
+          </Route>
+          <PrivateRoute exact path="/todos" component={ToDoList} />
+          <Redirect to="/login" />
+        </Switch>
+      </BrowserRouter>
+    </Provider>
+  );
+}
+
+export default App;
+
+/*
 
 function App() {
 
   return (
     <div className="App">
-
-
 
 
 <BrowserRouter>
@@ -35,3 +58,6 @@ function App() {
 }
 
 export default App;
+
+
+*/

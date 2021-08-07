@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { LOGIN_PENDING, LOGIN_FULFILLED, LOGIN_REJECTED } from "./constants";
-=======
-import { LOGIN_PENDING, LOGIN_FULFILLED, LOGIN_REJECTED } from "../todos/constants";
->>>>>>> da60ba1 (login form a backend)
 
 export const loginPending = () => ({
   type: LOGIN_PENDING,

@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { TodoReducer } from "./todos/reducers";
-import { apiUrl } from "../helpers/contants";
+import { apiUrl } from "../helpers/constants";
 import { LoginReducer } from "./auth/reducers";
 
 

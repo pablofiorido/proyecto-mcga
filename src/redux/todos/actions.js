@@ -40,22 +40,14 @@ import {
     type: FETCH_TODOS_REJECTED,
     error: err,
   });
-<<<<<<< HEAD
 
   export const editTodoFulfilled = (payload) => ({
     type: EDIT_TODO_FULFILLED,
     payload: payload,
   });
-=======
->>>>>>> da60ba1 (login form a backend)
   
   export const editTodoPending = () => ({
     type: EDIT_TODO_PENDING,
-  });
-  
-  export const editTaskFulfilled = (payload) => ({
-    type: EDIT_TODO_FULFILLED,
-    payload: payload,
   });
   
   export const editTodoRejected = (err) => ({
@@ -75,8 +67,4 @@ import {
   export const deleteTodoRejected = (err) => ({
     type: DELETE_TODO_REJECTED,
     error: err,
-<<<<<<< HEAD
   });
-=======
-  });
->>>>>>> da60ba1 (login form a backend)
