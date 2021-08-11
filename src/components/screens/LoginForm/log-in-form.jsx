@@ -12,6 +12,8 @@ import { LOGIN_FULFILLED } from "../../../redux/auth/constants";
 import { ErrorLabel } from "../../shared/label/errorLabel";
 import { loginFulfilled } from '../../../redux/auth/actions';
 import { login } from '../../../redux/auth/thunks';
+import SigninForm from '../SigninForm';
+
 
 
 const Login = ({ login, isLoading, loginError }) => {
@@ -53,12 +55,17 @@ const Login = ({ login, isLoading, loginError }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await login({ username: userEmail, password: userPassword });
+    const response = await login({ email: userEmail, password: userPassword });
     console.log(response);
     if (response.type === LOGIN_FULFILLED) {
-      history.push("/tasks");
+      history.push("/todos");
     }
   };
+
+const SigninScreen = (event) => {
+  history.push("/Signin");
+}
+  
 
   useEffect(() => {
     if (wasInputFocused && (!!!userEmail || !!!userPassword)) {
@@ -69,10 +76,14 @@ const Login = ({ login, isLoading, loginError }) => {
   const isButtonDisabled = !!!userEmail || !!!userPassword || error;
   const wasInputFocused = emailFocused && passwordFocused;
 
+
+
   return (
+
+    
     <div className={css.container}>
       <form className={css.wrapper} onSubmit={handleSubmit}>
-        <h1>SIGN IN</h1>
+        <h1>LOG IN</h1>
         <div className={css.inputsWrapper}>
           <TextField
             label="Email"
@@ -99,14 +110,27 @@ const Login = ({ login, isLoading, loginError }) => {
         >
           {!isLoading ? "Login" : "Loading..."}
         </Button>
+
+        <Button
+          type="signin"
+          size="height"
+          disabled={isButtonDisabled || isLoading}
+          onClick={SigninScreen}
+        >
+          Registrate
+        </Button>
+        
+        <span onClick={SigninScreen}> No tienes una cuenta? Crea una aqui </span>
+
+        <button onClick= {SigninScreen}>SIGN IN FORM</button>
+
+
       </form>
     </div>
   );
 };
 
 export default Login;
-
-
 
 
 

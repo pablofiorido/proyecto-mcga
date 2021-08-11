@@ -8,8 +8,18 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Login from "./components/screens/LoginForm";
 import PrivateRoute from "./helpers/privateRoute";
 import Button from './components/shared/button/button';
+import SigninForm from './components/screens/SigninForm';
+import { useHistory } from "react-router";
 
 
+
+const SigninScreen = async (event) => {
+  event.preventDefault();
+  let history = useHistory();
+    history.push("/Signin");
+}
+
+<button onClick= {SigninScreen}>SIGN IN FORM</button>
 
 function App() {
   return (
@@ -20,6 +30,7 @@ function App() {
             <LoginForm />
           </Route>
           <PrivateRoute exact path="/todos" component={ToDoList} />
+          <Route exact path="/Signin" component={SigninForm} />
           <Redirect to="/login" />
         </Switch>
       </BrowserRouter>
@@ -28,6 +39,8 @@ function App() {
 }
 
 export default App;
+
+// <SigninForm />
 
 /*
 

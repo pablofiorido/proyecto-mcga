@@ -35,8 +35,10 @@ export const fetchTodos =
   async (dispatch, _getState, { apiUrl }) => {
     try {
       dispatch(fetchTodosPending());
-      const { data: response } = await axios.get(`${apiUrl}/todos`);
+      const authstate = _getState().auth;
+      const { data: response } = await axios.get(`${apiUrl}/todos`, {headers: {authorization: authstate.jwt}});
       if (response.success) {
+        console.log(response)
         dispatch(fetchTodosFulfilled(response.data));
       } else {
         dispatch(fetchTodosRejected(response.message));

@@ -1,0 +1,28 @@
+.container,
+.wrapper,
+.inputsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.wrapper,
+.inputsWrapper {
+  background: #fff;
+  border-radius: 7px;
+}
+.wrapper {
+  justify-content: space-between;
+  padding: 50px;
+  height: 350px;
+}
+
+.inputsWrapper {
+  height: 50%;
+}
