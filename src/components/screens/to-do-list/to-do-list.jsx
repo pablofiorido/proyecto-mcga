@@ -2,6 +2,8 @@ import React from "react";
 import ToDo from "./to-do";
 import Button from "../../shared/button/button"
 import { AddIcon } from "../../assets/icons";
+import { EditIcon } from "../../assets/icons";
+import { DeleteIcon } from "../../assets/icons";
 import { CheckmarkIcon } from "../../assets/icons";
 import { TextField } from "../../shared/input/input";
 import { Overlay } from "../../shared/overlay/overlay";
@@ -57,7 +59,12 @@ class ToDoList extends React.Component {
     return (
       <ul className={css.listContainer}>
         {list.map((todo) => {
-          const { _id, description } = todo;
+          console.log(todo._id)
+          console.log("entro al map ToDos", todo)
+          const {_id, description } = todo;
+          //const _id = todo.id;
+          //const description = todo.description;
+          //console.log("entro id y descrip", todo)
           return (
             <ToDo
               onClick={() => this.handleTaskClick(_id)}
@@ -113,12 +120,15 @@ class ToDoList extends React.Component {
               required
             />
             <Button
+            
               style={{ marginTop: "1px" }}
               type="submit"
               size="small"
               disabled={!!!value}
               icon={editing ? <CheckmarkIcon /> : <AddIcon />}
+              
             />
+           
           </form>
           {this.renderList()}
         </div>

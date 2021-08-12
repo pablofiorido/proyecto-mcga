@@ -4,8 +4,11 @@
 
   
 import { connect } from "react-redux";
+
 import { bindActionCreators } from "redux";
+
 import { addTodo, fetchTodos, editTodo, deleteTodo } from "../../../redux/todos/thunks";
+
 import ToDoList from "./to-do-list";
 
 const mapStateToProps = state => ({
