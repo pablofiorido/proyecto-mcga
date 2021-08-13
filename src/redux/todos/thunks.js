@@ -24,7 +24,7 @@ export const addTodo =
       dispatch(addTodoPending());
       const { data: response } = await axios.post(`${apiUrl}/todos/add`, data, {headers: {authorization: authstate.jwt}});
       if (response.success) {
-        dispatch(addTodoFulfilled(response.data));
+        dispatch(addTodoFulfilled(response));
       } else {
         dispatch(addTodoRejected(response.message));
       }
