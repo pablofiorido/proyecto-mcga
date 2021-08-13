@@ -27,8 +27,8 @@ export const LoginReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isLoading: false,
         isAdmin: action.payload.isAdmin,
-        isAuthed: !!action.payload.jwt,
-        jwt: action.payload.jwt,
+        isAuthed: !!action.payload.jwt,     //SI HAY TOKEN PASA A TRUE, PARA SABER SI ESTA LOGUEADO O NO
+        jwt: action.payload.jwt,            //GUARDA EL TOKEN PARA DESPUES USARLO EN LOS THUNKS Y METERLOS EN LOS HEADERS DE LAS REQUEST
         userId: action.payload._id,
       };
     case LOGIN_REJECTED:

@@ -23,13 +23,16 @@ const SigninScreen = async (event) => {
 
 function App() {
   return (
+
+      // el provider es para inyectar el state de redux como props a todos los componentes dentro de App,
+    // pero si no conectas el componente con la funcion connect en el index de cada componente, no funciona.
     <Provider store={store}>
       <BrowserRouter>
-        <Switch>
+        <Switch>           {/* switch se usa para cambiar entre una ruta u otra */}
           <Route exact path="/login">
             <LoginForm />
           </Route>
-          <PrivateRoute exact path="/todos" component={ToDoList} />
+          <PrivateRoute exact path="/todos" component={ToDoList} />      {/* el private route chequea q el user este autenticado, si no lo esta, redirige al login, sino devuelve el componente q le pases en la prop component */}
           <Route exact path="/Signin" component={SigninForm} />
           <Redirect to="/login" />
         </Switch>

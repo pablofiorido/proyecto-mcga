@@ -16,19 +16,19 @@ import {
 
 export const addTodo =
   (data) =>
-  async (dispatch, _getState, { apiUrl }) => {
+  async (dispatch, _getState, { apiUrl }) => {      //APIURL LO INJECTA EN LA CONFIG DEL STORE
     //agregado lo de abajo
-    const authstate = _getState().auth;
-    console.log("console 1 entro")
+    const authstate = _getState().auth;     //CHEQUEA LOGIN.
+    console.log("console 1 entro")        //DEBUG
     try {
-      dispatch(addTodoPending());
-      const { data: response } = await axios.post(`${apiUrl}/todos/add`, data, {headers: {authorization: authstate.jwt}});
-      if (response.success) {
+      dispatch(addTodoPending());   //DESCPACHO ACTION PENDING PARA PONER LA UI EN ISLOADING
+      const { data: response } = await axios.post(`${apiUrl}/todos/add`, data, {headers: {authorization: authstate.jwt}});    //METO EL TOKEN EN EL HEADER POR QUE ME DABA ERROR :(
+      if (response.success) {       //SI SALIO BIEN LA REQ DESPACHO LA ACTION SI NO DESPACHO UN REJECT
         dispatch(addTodoFulfilled(response));
       } else {
         dispatch(addTodoRejected(response.message));
       }
-    } catch (error) {
+    } catch (error) {       //POR SI SE ROMPE TODO
       dispatch(addTodoRejected(error.message));
     }
   };
