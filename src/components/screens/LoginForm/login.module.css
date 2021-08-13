@@ -21,7 +21,8 @@
   justify-content: space-between;
   padding: 50px;
   height: 350px;
-}
+  background-color: gray;
+ }
 
 .inputsWrapper {
   height: 50%;

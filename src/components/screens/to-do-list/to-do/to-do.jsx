@@ -22,13 +22,17 @@ class ToDo extends React.Component {
               type="edit"
               icon={<EditIcon stroke="#fff" />}
               onClick={onEdit}
-            />
+            >
+EDITAR
+</Button>
             <Button
               size="small"
               type="delete"
               icon={<DeleteIcon fill="#fff" />}
               onClick={onDelete}
-            />
+            >
+ELIMINAR
+</Button>
           </div>
         )}
       </li>

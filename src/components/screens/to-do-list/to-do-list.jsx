@@ -126,7 +126,9 @@ class ToDoList extends React.Component {
               disabled={!!!value}
               icon={editing ? <CheckmarkIcon /> : <AddIcon />}
               
-            />
+            >
+            AGREGAR
+            </Button>
            
           </form>
           {this.renderList()}

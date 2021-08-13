@@ -119,10 +119,6 @@ const SigninScreen = (event) => {
         >
           Registrate
         </Button>
-        
-        <span onClick={SigninScreen}> No tienes una cuenta? Crea una aqui </span>
-
-        <button onClick= {SigninScreen}>SIGN IN FORM</button>
 
 
       </form>
@@ -133,6 +129,12 @@ const SigninScreen = (event) => {
 export default Login;
 
 
+
+        /*
+        <span onClick={SigninScreen}> No tienes una cuenta? Crea una aqui </span>
+
+        <button onClick= {SigninScreen}>SIGN IN FORM</button>
+        */
 
 /*
 
