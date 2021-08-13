@@ -66,8 +66,8 @@ export const editTodo =
         id: id,
         description: value,
       });
-      if (response.success) {
-        dispatch(editTodoFulfilled(response.data));
+      if (response.success) { 
+        dispatch(editTodoFulfilled(response));
       } else {
         dispatch(editTodoRejected(response.message));
       }
@@ -87,7 +87,7 @@ export const deleteTodo =
       console.log(`${apiUrl}/todos/${id}`);
       const { data: response } = await axios.delete(`${apiUrl}/todos/${id}`, {headers: {authorization: authstate.jwt}});
       if (response.success) {
-        dispatch(deleteTodoFulfilled(response.data));
+        dispatch(deleteTodoFulfilled(response));
       } else {
         dispatch(deleteTodoRejected(response.message));
       }

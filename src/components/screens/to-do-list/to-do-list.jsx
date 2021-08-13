@@ -58,13 +58,12 @@ class ToDoList extends React.Component {
     const { selectedTodo } = this.state;
     return (
       <ul className={css.listContainer}>
+        
         {list.map((todo) => {
           console.log(todo._id)
           console.log("entro al map ToDos", todo)
           const {_id, description } = todo;
-          //const _id = todo.id;
-          //const description = todo.description;
-          //console.log("entro id y descrip", todo)
+          
           return (
             <ToDo
               onClick={() => this.handleTaskClick(_id)}
@@ -72,7 +71,7 @@ class ToDoList extends React.Component {
               description={description}
               onDelete={() => this.handleDelete(_id)}
               onEdit={() => this.handleEdit(_id, description)}
-              isSelected={_id === selectedTodo}
+              isSelected={_id === selectedTodo} 
             />
           );
         })}
@@ -120,7 +119,7 @@ class ToDoList extends React.Component {
               required
             />
             <Button
-            
+              //agregar texto del boton
               style={{ marginTop: "1px" }}
               type="submit"
               size="small"
