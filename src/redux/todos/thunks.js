@@ -54,7 +54,7 @@ export const fetchTodos =
     }
   };
 
-export const editTodo =
+/*export const editTodo =
   (id, value) =>
   async (dispatch, _getState, { apiUrl }) => {
     console.log("console 3 entro")
@@ -74,7 +74,36 @@ export const editTodo =
     } catch (error) {
       dispatch(editTodoRejected(error.message));
     }
+  }; */
+
+  export const editTodo =
+  (id, value) =>
+  async (dispatch, getState, { apiUrl }) => {
+    try {
+      dispatch(editTodoPending());
+      const authState = getState().auth;
+      const { data: response } = await axios.put(
+        `${apiUrl}/todos/edit/${id}`,
+        {
+          id: id,
+          description: value,
+        },
+        {
+          headers: {
+            authorization: authState.jwt,
+          },
+        }
+      );
+      if (response.success) {
+        dispatch(editTodoFulfilled(response));
+      } else {
+        dispatch(editTodoRejected(response.message));
+      }
+    } catch (error) {
+      dispatch(editTodoRejected(error.message));
+    }
   };
+
 
 export const deleteTodo =
   (id) =>
