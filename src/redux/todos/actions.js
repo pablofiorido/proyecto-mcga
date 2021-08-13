@@ -12,12 +12,15 @@ import {
     DELETE_TODO_REJECTED,
     DELETE_TODO_PENDING,
   } from "./constants";
+
+
+  //LAS ACTION SON OBJETOS PLANOS, EL PAYLOAD QUE USAN ALGUNAS ES LA DATA QUE LLEGA A LOS REDUCERS
   
   export const addTodoPending = () => ({
     type: ADD_TODO_PENDING,
   });
   
-  export const addTodoFulfilled = (payload) => ({
+  export const addTodoFulfilled = (payload) => ({     //EN EL REDUCER TENGO QUE LEER ACTION.PAYLOAD PARA OBTENER LA DATA
     type: ADD_TODO_FULFILLED,
     payload: payload,
   });
@@ -36,7 +39,7 @@ import {
     payload: payload,
   });
   
-  export const fetchTodosRejected = (err) => ({
+  export const fetchTodosRejected = (err) => ({           //EN EL REDUCER PUEDO LEER ACTION.ERROR PARA OBTENER EL ERROR
     type: FETCH_TODOS_REJECTED,
     error: err,
   });

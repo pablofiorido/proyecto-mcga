@@ -14,7 +14,11 @@ import { loginFulfilled } from '../../../redux/auth/actions';
 import { login } from '../../../redux/auth/thunks';
 import SigninForm from '../SigninForm';
 
-
+// componente funcional, uso los hooks para tratar de replicar los "ciclos de vida" del componente de react.
+// si uso useEffect y le paso propuedades en el array de dependencias [], eso se va a ejecutar cada vez q una de las propiedades q esta metida en ese array cambie.
+// si no le paso nada y dejo el useEffect con el array vacio, simula el metodo ComponentDidMount (generalemnte se usa para mandar request al backend cada vez q carga el componente por unica vez, como en el caso q hice para obtener todas las tareas).
+// tengo useState, q es parecido a this.setState, me permite actualizar el state del componente.
+// uso useHistory para redirigir entre paginas o componentes.
 
 const Login = ({ login, isLoading, loginError }) => {
   const [userEmail, setUserEmail] = useState("");
@@ -23,7 +27,7 @@ const Login = ({ login, isLoading, loginError }) => {
   const [passwordFocused, setPasswordFocused] = useState(false);
   const [error, setError] = useState("");
   let history = useHistory();
-  const handleChange = (event) => {
+  const handleChange = (event) => {   //HANDLECHG LO USO PARA GUARDAR EN CADA ESTADO SEGUN EL NOMBRE DEL INPUT
     event.persist();
     const value = event.target.value;
     if (event.target.name === "password") {
@@ -34,9 +38,9 @@ const Login = ({ login, isLoading, loginError }) => {
   };
 
   useEffect(() => {
-    if (userEmail && !isValidEmail(userEmail)) {
+    if (userEmail && !isValidEmail(userEmail)) {    //VALIDA EMAIL CUANDO CAMBIA EL STATE DE USEREMAIL
       setError("InvalidEmail");
-    } else {
+    } else {        //LIMPIA EL ERROR SI EL EMAIL ES VALIDO, SI HAY ERROR LUEGO NO DEJA SUBMITEAR
       setError("");
     }
     if (!error && userEmail && userPassword) {
@@ -44,6 +48,8 @@ const Login = ({ login, isLoading, loginError }) => {
     }
   }, [userEmail, userPassword, error]);
 
+
+  //CON EL HANDLEBLUR MANEJO EL EVENTO CUANDO EL INPUT POIERDE EL FOCO
   const handleBlur = (event) => {
     event.persist();
     if (event.target.name === "password") {
@@ -53,11 +59,12 @@ const Login = ({ login, isLoading, loginError }) => {
     }
   };
 
+  //USO UN ASYNC PARA ESPERAR LA RESPUESTA DE BACK, SI SALE BIEN REDIRIJO A LA LISTA DE TAREAS
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await login({ email: userEmail, password: userPassword });
     console.log(response);
-    if (response.type === LOGIN_FULFILLED) {
+    if (response.type === LOGIN_FULFILLED) {      //SI LA RESPUESTA ES IGUAL A LA ACCION FULLFILLED DEL THUNK DE LOGIN, REDIRIJO
       history.push("/todos");
     }
   };
@@ -67,14 +74,14 @@ const SigninScreen = (event) => {
 }
   
 
-  useEffect(() => {
+  useEffect(() => {   //SI EL USER HIZO FOCO EN AMBOS INPUTS Y NO ESCRIBIO EN NINGUNO LO PATEA POR ñOQUI
     if (wasInputFocused && (!!!userEmail || !!!userPassword)) {
       setError("Incompleted");
     }
   }, [error, userEmail, userPassword, emailFocused, passwordFocused]);
 
-  const isButtonDisabled = !!!userEmail || !!!userPassword || error;
-  const wasInputFocused = emailFocused && passwordFocused;
+  const isButtonDisabled = !!!userEmail || !!!userPassword || error;    //VARIABLE PARA DESHABILITAR EL BOTON
+  const wasInputFocused = emailFocused && passwordFocused;        //ESTA MUESTRA ERRORES EN BASE SI EL INPUT SE HIZO FOCO PREVIAMENTE
 
 
 
